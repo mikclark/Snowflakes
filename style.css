@@ -1,0 +1,9 @@
+.background {
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(to bottom, black, darkblue);
+}
+.snowflake {
+    position: fixed;
+    color: white;
+}

@@ -1,0 +1,14 @@
+<html ng-app="snowing">
+    <link href="style.css" rel="stylesheet"/>
+    <script src="angular.min.js"></script>
+    <script src="snow.controller.js"></script>
+    <body class="background" ng-controller="SnowCtrl">
+        <div class="snowflake"
+             ng-repeat="flake in snowflakes"
+             style="top:{{flake.y}}%; left:{{flake.x}}%; font-size:{{flake.size}}pt;">
+            &#10053;
+        </div>
+        <!--&10053;-->
+        <!--pre style="top:90%; left:0%; color:yellow;">{{snowflakes | json}}</pre-->
+    </body>
+</html>
