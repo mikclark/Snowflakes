@@ -19,8 +19,8 @@ app.controller('SnowCtrl', function SnowCtrl($scope, $interval) {
                     size: distance * maxsize,
                     vy: distance * maxspeed,
                     vx: distance * maxspeed * 0.1 * (Math.random() - Math.random())
-                    amp: 8 + Math.random()*24,
-                    wavl: 20 + Math.random()*20
+                    amp: 8.0 + Math.random()*24.0,
+                    wavl: 20.0 + Math.random()*20.0
                 }
             )
         }
@@ -36,7 +36,7 @@ app.controller('SnowCtrl', function SnowCtrl($scope, $interval) {
     function anim() {
         for (var i = 0; i < $scope.snowflakes.length; i++ ) {
             var ax = $scope.snowflakes[i].amp * Math.sin($scope.snowflakes[i].y/$scope.snowflakes[i].wavl);
-            var ay = 0:
+            var ay = 0;
             $scope.snowflakes[i].vx += ax;
             $scope.snowflakes[i].vy += ay;
             $scope.snowflakes[i].x += $scope.snowflakes[i].vx * 0.02;
