@@ -3,7 +3,6 @@ var app = angular.module('snowing', []);
 app.controller('SnowCtrl', function SnowCtrl($scope, $interval) {
     var maxspeed = 10.0;
     var maxsize = 40;
-    var maxacceleration = 0;
 
     initializeSnow();
     $interval(anim, 20);
@@ -19,7 +18,9 @@ app.controller('SnowCtrl', function SnowCtrl($scope, $interval) {
                     y: -10.0 + Math.random()*120.0,
                     size: distance * maxsize,
                     vy: distance * maxspeed,
-                    vx: distance * maxspeed * 0.01 * (Math.random() - Math.random())
+                    vx: distance * maxspeed * 0.1 * (Math.random() - Math.random())
+                    amp: 2 + Math.random()*4,
+                    wavl: 20 + Math.random()*20
                 }
             )
         }
@@ -34,8 +35,8 @@ app.controller('SnowCtrl', function SnowCtrl($scope, $interval) {
                
     function anim() {
         for (var i = 0; i < $scope.snowflakes.length; i++ ) {
-            var ax = maxacceleration * (Math.random() - 0.5);
-            var ay = 0.5 * maxacceleration * (Math.random() - 0.5);
+            var ax = $scope.snowflakes[i].amp * Math.sin($scope.snowflakes[i].y/$scope.snowflakes[i].wavl);
+            var ay = 0:
             $scope.snowflakes[i].vx += ax;
             $scope.snowflakes[i].vy += ay;
             $scope.snowflakes[i].x += $scope.snowflakes[i].vx * 0.02;
