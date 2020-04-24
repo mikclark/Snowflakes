@@ -35,7 +35,7 @@ app.controller('SnowCtrl', function SnowCtrl($scope, $interval) {
     function anim() {
         for (var i = 0; i < $scope.snowflakes.length; i++ ) {
             var ax = maxacceleration * (Math.random() - 0.5);
-            var ay = 0.5 + maxacceleration * (Math.random() - 0.5);
+            var ay = 0.5 * maxacceleration * (Math.random() - 0.5);
             $scope.snowflakes[i].vx += ax;
             $scope.snowflakes[i].vy += ay;
             $scope.snowflakes[i].x += $scope.snowflakes[i].vx * 0.02;
