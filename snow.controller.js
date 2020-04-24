@@ -3,7 +3,7 @@ var app = angular.module('snowing', []);
 app.controller('SnowCtrl', function SnowCtrl($scope, $interval) {
     var maxspeed = 10.0;
     var maxsize = 40;
-    var maxacceleration = 0.2;
+    var maxacceleration = 0;
 
     initializeSnow();
     $interval(anim, 20);
