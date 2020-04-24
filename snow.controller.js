@@ -19,7 +19,7 @@ app.controller('SnowCtrl', function SnowCtrl($scope, $interval) {
                     size: distance * maxsize,
                     vy: distance * maxspeed,
                     vx: distance * maxspeed * 0.1 * (Math.random() - Math.random())
-                    amp: 2 + Math.random()*4,
+                    amp: 8 + Math.random()*24,
                     wavl: 20 + Math.random()*20
                 }
             )
