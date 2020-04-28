@@ -1,26 +1,39 @@
 var app = angular.module('snowing', []);
 
-app.controller('SnowCtrl', function SnowCtrl($scope, $interval) {
+app.controller('SnowCtrl', function SnowCtrl($scope, $interval, $window) {
     var maxspeed = 10.0;
-    var maxsize = 40;
+    var maxsize = 45;
 
+    $scope.milliseconds = 0;
     initializeSnow();
     $interval(anim, 20);
     
     function initializeSnow(){
         $scope.snowflakes = [];
-        var n = 10 + Math.random()*100;
+        var rho = (0.3 + Math.random()*0.7)/2000.0;
+        var n = rho * $window.innerHeight * $window.innerWidth;
         for(var i = 0; i < n; i++){
             var distance = 0.2 + 0.8*Math.random();
+            var x = -10.0 + Math.random()*120.0;
+            var y = -10.0 + Math.random()*120.0;
             $scope.snowflakes.push(
                 {
-                    x: -10.0 + Math.random()*120.0,
-                    y: -10.0 + Math.random()*120.0,
+                    distance: distance,
+                    x: x,
+                    y: y,
+                    xx: x,
+                    yy: y,
                     size: distance * maxsize,
                     vy: distance * maxspeed,
-                    vx: distance * maxspeed * 0.1 * (Math.random() - Math.random())
-                    amp: 8.0 + Math.random()*24.0,
-                    wavl: 20.0 + Math.random()*20.0
+                    vx: 0 * distance * maxspeed * 0.1 * (Math.random() - Math.random()),
+                    waves: {
+                        ampx: 5 * Math.random(),
+                        freqx: 0.0001 + 0.0004 * Math.random(),
+                        shiftx: Math.random() * Math.PI,
+                        ampy: 1 * Math.random(),
+                        freqy: 0.0001 + 0.0004 * Math.random(),
+                        shifty: Math.random() * Math.PI
+                    }
                 }
             )
         }
@@ -34,14 +47,15 @@ app.controller('SnowCtrl', function SnowCtrl($scope, $interval) {
     }
                
     function anim() {
-        for (var i = 0; i < $scope.snowflakes.length; i++ ) {
-            var ax = $scope.snowflakes[i].amp * Math.sin($scope.snowflakes[i].y/$scope.snowflakes[i].wavl);
-            var ay = 0;
-            $scope.snowflakes[i].vx += ax;
-            $scope.snowflakes[i].vy += ay;
-            $scope.snowflakes[i].x += $scope.snowflakes[i].vx * 0.02;
-            $scope.snowflakes[i].y += $scope.snowflakes[i].vy * 0.02;
-            PeriodicBoundaryConditions($scope.snowflakes[i]);
-        }   
+        $scope.milliseconds += 20;
+        $scope.snowflakes.forEach(function(flake) {
+            var dx = flake.distance * flake.waves.ampx * Math.sin(flake.waves.shiftx + $scope.milliseconds*flake.waves.freqx);
+            var dy = flake.distance * flake.waves.ampy * Math.sin(flake.waves.shifty + $scope.milliseconds*flake.waves.freqy);
+            flake.xx += flake.vx * 0.02;
+            flake.yy += flake.vy * 0.02;
+            flake.x = flake.xx + dx;
+            flake.y = flake.yy + dy;
+            PeriodicBoundaryConditions(flake);
+        });
     }
 })

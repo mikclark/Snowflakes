@@ -5,10 +5,8 @@
     <body class="background" ng-controller="SnowCtrl">
         <div class="snowflake"
              ng-repeat="flake in snowflakes"
-             style="top:{{flake.y}}%; left:{{flake.x}}%; font-size:{{flake.size}}pt;">
-            &#10053;
+             style="top:{{flake.y}}%; left:{{flake.x}}%; font-size:{{flake.size*0.5}}pt;text-shadow:0 0 5px white;">
+            &bull;
         </div>
-        <!--&10053;-->
-        <!--pre style="top:90%; left:0%; color:yellow;">{{snowflakes | json}}</pre-->
     </body>
 </html>
