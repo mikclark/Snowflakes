@@ -40,10 +40,10 @@ app.controller('SnowCtrl', function SnowCtrl($scope, $interval, $window) {
     }
     
     function PeriodicBoundaryConditions(flake) {
-        if(flake.x < -10){flake.x += 120;}
-        if(flake.x > 110){flake.x -= 120;}
-        if(flake.y < -10){flake.y += 120;}
-        if(flake.y > 110){flake.y -= 120;}
+        if(flake.xx < -10){flake.xx += 120;}
+        if(flake.xx > 110){flake.xx -= 120;}
+        if(flake.yy < -10){flake.yy += 120;}
+        if(flake.yy > 110){flake.yy -= 120;}
     }
                
     function anim() {
