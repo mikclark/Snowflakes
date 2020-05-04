@@ -7,3 +7,34 @@
     position: fixed;
     color: #eeeeee;
 }
+
+.showOptions {
+    padding: 0 6px 3px 6px;
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 30px;
+    transition: 0.6s;
+    cursor: pointer;
+}
+.showOptions:hover {
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.optionsBlock {
+    display: inline-block;
+    padding: 6px;
+    background: rgba(255, 255, 255, .7);
+    border: 3px solid white;
+    transition: opacity 0.5s;
+}
+.optionsBlock div, input, button {
+    opacity: 0.7
+}
+.optionHeader {
+    margin-top: 6px;
+}
+.optionValue {
+    margin-left: 12px;
+}
